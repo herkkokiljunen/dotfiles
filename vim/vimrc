@@ -1,0 +1,114 @@
+syntax on
+
+set ts=2
+set sw=2
+set guifont=Monaco:h12
+set nu
+color desert
+
+set ic
+set smartcase
+" Generic settings
+set history=1000
+set undolevels=1000
+
+" No backups nor swapfiles
+set nobackup
+set noswapfile
+
+" Map leader key
+let mapleader = ","
+
+noremap <leader>o <Esc>:CommandT<CR>
+noremap <leader>tb <Esc>:TagbarToggle<CR>
+
+map <C-J> <C-W>j<C-W>_
+map <C-K> <C-W>k<C-W>_
+
+"Edit vimrc
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+"Reload vimrc
+nmap <silent> <leader>rv :so $MYVIMRC<CR>
+
+"Nerdtree
+nmap <silent> <leader>t :NERDTreeToggle<CR>
+nmap <silent> <leader>tm :NERDTreeMirror<CR>
+
+"CommandT
+nmap <silent> <leader>f :CommandT <CR>
+
+"Fugitive git bindings
+nmap <silent> <leader>gs :Gstatus<CR>
+nmap <silent> <leader>gc :Gcommit<CR>
+nmap <silent> <leader>gd :Gdiff<CR>
+
+"Move bw windows
+nmap <silent> <leader>k :wincmd k<CR>
+nmap <silent> <leader>j :wincmd j<CR>
+nmap <silent> <leader>h :wincmd h<CR>
+nmap <silent> <leader>l :wincmd l<CR>
+noremap <silent> <C-h> :bprev<CR>
+noremap <silent> <C-l> :bnext<CR>
+noremap <silent> <C-c> :bd<CR>
+
+"Learn proper vim
+noremap <Up> <nop>
+noremap <Down> <nop>
+noremap <Left> <nop>
+noremap <Right> <nop>
+
+"Pathogen
+call pathogen#infect()
+call pathogen#helptags()
+
+"Set red background for text that goes beyond 80 cols
+augroup vimrc_autocmds
+  au!
+  autocmd BufRead * highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+  autocmd BufRead * match OverLength /\%81v.*/
+augroup END
+
+set statusline=%<%t\ [%{strlen(&fenc)?&fenc:'none'}] "file name and encoding
+set statusline+=%m      "modified flag
+
+set statusline+=%{SyntasticStatuslineFlag()}
+
+autocmd FileType ruby,eruby,yaml set ai sw=2 sts=2 et
+au BufNewFile,BufRead *.god 	set filetype=ruby
+
+if has("autocmd")
+  filetype indent on
+endif
+
+runtime! autoload/fugitive.vim
+if exists('*fugitive#statusline')
+    set statusline+=%=\ %{fugitive#statusline()}
+    "let &statusline='%= %t %{fugitive#statusline()}'
+  endif
+
+autocmd FileType cucumber compiler cucumber | setl makeprg=cucumber\ \"%:p\"
+autocmd FileType ruby
+      \ if expand('%') =~# '_test\.rb$' |
+      \   compiler rubyunit | setl makeprg=testrb\ \"%:p\" |
+      \ elseif expand('%') =~# '_spec\.rb$' |
+      \   compiler rspec | setl makeprg=rspec\ \"%:p\" |
+      \ else |
+      \   compiler ruby | setl makeprg=ruby\ -wc\ \"%:p\" |
+      \ endif
+autocmd User Bundler
+      \ if &makeprg !~# 'bundle' | setl makeprg^=bundle\ exec\  | endif
+
+  " Strip trailing whitespace
+function! <SID>StripTrailingWhitespaces()
+  " Preparation: save last search, and cursor position.
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  " Do the business:
+  %s/\s\+$//e
+  " Clean up: restore previous search history, and cursor position
+  let @/=_s
+call cursor(l, c)
+  endfunction
+
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
