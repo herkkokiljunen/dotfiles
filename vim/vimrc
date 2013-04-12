@@ -31,8 +31,8 @@ nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>rv :so $MYVIMRC<CR>
 
 "Nerdtree
-nmap <silent> <leader>t :NERDTreeToggle<CR>
-nmap <silent> <leader>tm :NERDTreeMirror<CR>
+nmap <silent> <leader>n :NERDTreeToggle<CR>
+nmap <silent> <leader>bm :NERDTreeMirror<CR>
 
 "CommandT
 nmap <silent> <leader>f :CommandT <CR>
@@ -50,6 +50,12 @@ nmap <silent> <leader>l :wincmd l<CR>
 noremap <silent> <C-h> :bprev<CR>
 noremap <silent> <C-l> :bnext<CR>
 noremap <silent> <C-c> :bd<CR>
+
+"tslime
+vmap <C-s><C-s> <Plug>SendSelectionToTmux
+nmap <C-s><C-s> <Plug>NormalModeSendToTmux
+nmap <C-s>r <Plug>SetTmuxVars
+
 
 "Learn proper vim
 noremap <Up> <nop>
@@ -112,3 +118,5 @@ call cursor(l, c)
   endfunction
 
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+
+let g:turbux_command_rspec='spring rspec'

@@ -1,0 +1,36 @@
+[submodule "vim/bundle/fugitive"]
+	path = vim/bundle/fugitive
+	url = git://github.com/tpope/vim-fugitive.git
+[submodule "vim/bundle/nerdtree"]
+	path = vim/bundle/nerdtree
+	url = git://github.com/scrooloose/nerdtree.git
+[submodule "vim/bundle/command-t"]
+	path = vim/bundle/command-t
+	url = git://git.wincent.com/command-t.git
+[submodule "vim/bundle/align"]
+	path = vim/bundle/align
+	url = git://github.com/vim-scripts/Align.git
+[submodule "vim/bundle/vim-rails"]
+	path = vim/bundle/vim-rails
+	url = git://github.com/tpope/vim-rails.git
+[submodule "vim-coffee-script"]
+	path = vim-coffee-script
+	url = git://github.com/kchmck/vim-coffee-script.git
+[submodule "vim/bundle/vim-coffee-script"]
+	path = vim/bundle/vim-coffee-script
+	url = git://github.com/kchmck/vim-coffee-script.git
+[submodule "vim/bundle/vim-ruby"]
+	path = vim/bundle/vim-ruby
+	url = git://github.com/vim-ruby/vim-ruby.git
+[submodule "bundle/fugitive"]
+	path = bundle/fugitive
+	url = http://github.com/tpope/vim-fugitive.git
+[submodule "vim/pathogen"]
+	path = vim/pathogen
+	url = git://github.com/tpope/vim-pathogen.git
+[submodule "vim/bundle/tslime"]
+	path = vim/bundle/tslime
+	url = git://github.com/jgdavey/tslime.vim.git
+[submodule "vim/bundle/turbux"]
+	path = vim/bundle/turbux
+	url = git://github.com/jgdavey/vim-turbux.git
