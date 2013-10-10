@@ -23,6 +23,11 @@ let mapleader = ","
 noremap <leader>o <Esc>:CommandT<CR>
 noremap <leader>tb <Esc>:TagbarToggle<CR>
 
+
+nmap <silent> <leader>rn :set relativenumber<CR>
+nmap <silent> <leader>nn :set number<CR>
+
+
 " Past and keep
 vnoremap <leader>p "_dP
 
@@ -64,6 +69,7 @@ nmap <C-s>r <Plug>SetTmuxVars
 "align
 
 vmap <leader>css :sort<bar>:Align :\zs<CR>
+vmap <leader>rgb :s/\s\s/ /ge<bar>:s/\s/,/g<CR>
 
 
 "Learn proper vim
@@ -128,4 +134,4 @@ call cursor(l, c)
 
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
-let g:turbux_command_rspec='spring rspec'
+let g:turbux_command_rspec='rspec'
