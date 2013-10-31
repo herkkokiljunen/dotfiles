@@ -1,11 +1,13 @@
 syntax on
+syntax enable
 
 set ts=2
 set sw=2
 set expandtab
 set guifont=Monaco:h12
 set nu
-color desert
+
+set laststatus=2
 
 set ic
 set smartcase
@@ -20,7 +22,7 @@ set noswapfile
 " Map leader key
 let mapleader = ","
 
-noremap <leader>o <Esc>:CommandT<CR>
+noremap <leader>o <Esc>:CtrlP<CR>
 noremap <leader>tb <Esc>:TagbarToggle<CR>
 
 
@@ -82,6 +84,14 @@ noremap <Right> <nop>
 call pathogen#infect()
 call pathogen#helptags()
 
+"solarized
+se t_Co=256
+let g:solarized_termcolors=256
+
+set background=dark
+colorscheme solarized
+
+
 "Set red background for text that goes beyond 80 cols
 augroup vimrc_autocmds
   au!
@@ -89,10 +99,10 @@ augroup vimrc_autocmds
   autocmd BufRead * match OverLength /\%81v.*/
 augroup END
 
-set statusline=%<%t\ [%{strlen(&fenc)?&fenc:'none'}] "file name and encoding
-set statusline+=%m      "modified flag
-
-set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline=%<%t\ [%{strlen(&fenc)?&fenc:'none'}] "file name and encoding
+"set statusline+=%m      "modified flag
+"
+"set statusline+=%{SyntasticStatuslineFlag()}
 
 autocmd FileType ruby,eruby,yaml set ai sw=2 sts=2 et
 au BufNewFile,BufRead *.god 	set filetype=ruby
@@ -102,10 +112,15 @@ if has("autocmd")
 endif
 
 runtime! autoload/fugitive.vim
-if exists('*fugitive#statusline')
-    set statusline+=%=\ %{fugitive#statusline()}
-    "let &statusline='%= %t %{fugitive#statusline()}'
-  endif
+
+"if exists('*fugitive#statusline')
+"    set statusline+=%=\ %{fugitive#statusline()}
+"    "let &statusline='%= %t %{fugitive#statusline()}'
+"  endif
+
+"airline
+"let g:airline#extensions#tabline#enabled = 1
+
 
 autocmd FileType cucumber compiler cucumber | setl makeprg=cucumber\ \"%:p\"
 autocmd FileType ruby
@@ -135,3 +150,6 @@ call cursor(l, c)
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 let g:turbux_command_rspec='rspec'
+
+
+let g:airline_powerline_fonts = 1
