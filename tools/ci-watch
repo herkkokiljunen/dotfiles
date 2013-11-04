@@ -1,0 +1,22 @@
+while :; do
+  clear
+  status=`hub ci-status`
+
+  if [ "$status" == "failure" ]
+  then
+    echo "CI: 💥"
+  fi
+
+  if [ "$status" == "success" ]
+  then
+    echo "CI: 👍"
+  fi
+
+
+  if [ "$status" == "pending" ]
+  then
+    echo "CI: ⌚️"
+  fi
+
+  sleep 30
+done
