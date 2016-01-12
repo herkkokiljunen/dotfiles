@@ -42,6 +42,9 @@ nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>rv :so $MYVIMRC<CR>
 
 "Nerdtree
+
+let g:NERDTreeWinSize = 50
+
 nmap <silent> <leader>n :NERDTreeToggle<CR>
 nmap <silent> <leader>bm :NERDTreeMirror<CR>
 
@@ -80,6 +83,10 @@ noremap <Down> <nop>
 noremap <Left> <nop>
 noremap <Right> <nop>
 
+
+noremap <leader>cr :RuboCop<CR>
+
+
 "Pathogen
 call pathogen#infect()
 call pathogen#helptags()
@@ -110,6 +117,10 @@ au BufNewFile,BufRead *.god 	set filetype=ruby
 if has("autocmd")
   filetype indent on
 endif
+
+
+autocmd FileType scala :setlocal sw=2 ts=2 sts=2 noexpandtab "
+
 
 runtime! autoload/fugitive.vim
 
@@ -149,7 +160,8 @@ call cursor(l, c)
 
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
-let g:turbux_command_rspec='rspec'
+let g:turbux_command_rspec='bundle exec rspec'
+let g:turbux_command_cucumber='bundle exec cucumber'
 
 
 let g:airline_powerline_fonts = 1

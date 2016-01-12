@@ -3,6 +3,7 @@ ZSH=$HOME/.oh-my-zsh
 
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+export EDITOR=vim
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -16,9 +17,19 @@ ZSH_THEME="pygmalion"
 
 alias c='clear'
 alias zshreload='source ~/.zshrc'
+alias rvmreload='rvm use `rvm current`'
+alias gh-open='/Users/herkko/Config/Scripts/github_open.sh'
+alias ctail='/Users/herkko/Config/Scripts/ctail.sh'
 
-
+alias ci-watch='~/.dotfiles/tools/ci-watch'
 alias st='say "Time is `/bin/date '+%H:%M'`"'
+alias be='bundle exec '
+alias g='git '
+
+
+alias pull-request='hub pull-request -b Leadfeeder/master'
+
+
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
@@ -43,9 +54,21 @@ alias st='say "Time is `/bin/date '+%H:%M'`"'
 plugins=(git)
 
 
+#eval "$(hub alias -s)"
 
 source $ZSH/oh-my-zsh.sh
 
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/share/chruby/auto.sh
+
+
 unsetopt correct_all
 # Customize to your needs...
-export PATH=/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/herkko/.rvm/bin
+
+
+export PATH=$PATH:/usr/local/opt/mysql55/bin
+export PATH=$PATH:/usr/local/share/npm/bin
+export PATH=$PATH:/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+
+
+export DISABLE_AUTO_TITLE=true
